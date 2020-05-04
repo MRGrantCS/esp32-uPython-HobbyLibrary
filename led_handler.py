@@ -2,6 +2,8 @@ from machine import Pin
 #Imports dictionary that defines what pins can be used for outputs
 from gpioDicts import outputsDict
 
+import time
+
 '''
 Interface
 
@@ -17,23 +19,27 @@ NOTE: Only pins in the outputsDict can be assigned for leds
 
 class ledClass:
   def __init__ (self, pin):
-
-
     self.pin = pin
     
     try:
       #check if pin is available for LED by checking dictionary of GPIOs
       if pin in outputsDict :
-        self.led = Pin(pin,Pin.OUT,pull=None)
+        self.led = Pin(pin,Pin.OUT,Pin.PULL_DOWN)
         self.ledOff()
       else:
         raise OSError
     except OSError:      
       print('GPIO not suitable for LED')
-      print('Choose from:', gpioDict)
+      print('Choose from:', outputsDict)
     
   def ledOn(self):
     self.led.value(1)
 
   def ledOff(self):
       self.led.value(0)
+  
+  def ledBlink(self, time):
+    self.led.value(1)
+    time.sleep(time)
+    self.led.value(0)
+    time.sleep(time)
