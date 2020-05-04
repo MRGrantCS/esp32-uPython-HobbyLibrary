@@ -1,5 +1,5 @@
-from led_Handler import ledClass
-from hcsr04_Sensor import HCSR04
+from led_handler import ledClass
+from hcsr04_sensor import HCSR04
 import time
 
 trig = 18
