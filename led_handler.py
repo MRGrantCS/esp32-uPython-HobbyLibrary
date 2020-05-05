@@ -29,7 +29,7 @@ class ledClass:
       else:
         raise OSError
     except OSError:      
-      print('GPIO not suitable for LED')
+      print('GPIO', pin,'not suitable for Input')
       print('Choose from:', outputsDict)
     
   def ledOn(self):
@@ -38,8 +38,8 @@ class ledClass:
   def ledOff(self):
       self.led.value(0)
   
-  def ledBlink(self, time):
+  def ledBlink(self, interval):
     self.led.value(1)
-    time.sleep(time)
+    time.sleep(interval)
     self.led.value(0)
-    time.sleep(time)
+    time.sleep(interval)

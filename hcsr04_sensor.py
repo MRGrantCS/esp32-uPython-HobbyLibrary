@@ -1,5 +1,6 @@
 import machine, time
 from machine import Pin
+from gpioDicts import inputsDict, outputsDict
 
 '''
 Interface
@@ -34,12 +35,31 @@ class HCSR04:
         By default is based in sensor limit range (4m)
         """
         self.echo_timeout_us = echo_timeout_us
-        # Init trigger pin (out)
-        self.trigger = Pin(trigger_pin, mode=Pin.OUT, pull=None)
-        self.trigger.value(0)
+        
+        try:
+          #check if pin is available for Outputs by checking dictionary of GPIOs
+          if trigger_pin in outputsDict :
+            # Init trigger pin (out)
+            self.trigger = Pin(trigger_pin, mode=Pin.OUT, pull=None)
+            self.trigger.value(0)
+          else:
+            raise OSError
+        except OSError:      
+          print('GPIO', trig_pin,'not suitable for Input')
+          print('Choose from:', outputsDict)
 
-        # Init echo pin (in)
-        self.echo = Pin(echo_pin, mode=Pin.IN, pull=None)
+        try:
+          #check if pin is available for Button by checking dictionary of GPIOs
+          if echo_pin in inputsDict :
+            # Init echo pin (in)
+            self.echo = Pin(echo_pin, mode=Pin.IN, pull=None)
+          else:
+            raise OSError
+        except OSError:      
+          print('GPIO', echo_pin,'not suitable for Input')
+          print('Choose from:', inputsDict)
+        
+        
 
     def _send_pulse_and_wait(self):
         """

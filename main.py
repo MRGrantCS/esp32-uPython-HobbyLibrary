@@ -1,6 +1,6 @@
 from led_handler import ledClass
 from hcsr04_sensor import HCSR04
-from button_handler import buttonClass
+from button_handler import pushSwitch
 import time
 
 trig = 18
@@ -11,12 +11,14 @@ LED2 = 5
 
 button1 = 33
 
-button = buttonClass(button1)
+button = pushButton(button1)
 
 ledGreen = ledClass(LED1)
 ledOrange = ledClass(LED2)
 
 sensor = HCSR04(trig,echo)
+
+button.irq(tigger = Pin.IRQ_FALLING, handler = ledGreen.ledBlink(0.5))
 
 while True:
   distance = sensor.distance_cm()
@@ -31,9 +33,9 @@ while True:
   else:
     ledGreen.ledOn()
     ledOrange.ledOff()
-  
+  '''
   if button.buttonPressed() == True:
-    for i in 3:
-      ledGreen.ledBlink()
-      ledOrange.ledBlink()
-  
+    for i in range(3):
+      ledGreen.ledBlink(1)
+      ledOrange.ledBlink(1)
+  '''
