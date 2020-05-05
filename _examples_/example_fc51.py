@@ -3,6 +3,10 @@ from led_handler import ledClass
 from machine import Pin
 
 '''
+NOTE - using interupts is problematic and may not lead to desired results without additional coding
+'''
+
+'''
 Example code for using FC51 obstacle detection sensor with esp32
 - Interrupts 
 - Loop

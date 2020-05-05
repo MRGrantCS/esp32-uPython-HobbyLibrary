@@ -30,6 +30,6 @@ class FC51:
   
   def obstacleDetected(self):
     obstacle = False
-    if self.fc51.value() == 1:
+    if self.fc51.value() == 0:
       obstacle = True
     return obstacle
