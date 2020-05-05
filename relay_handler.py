@@ -2,24 +2,18 @@ from machine import Pin
 #Imports dictionary that defines what pins can be used for outputs
 from gpioDicts import outputsDict
 
-import utime as time
-
 '''
 Relay Interface
 
 init:
-ledClass(output pin number)
+oneChnlRelay(output pin number)
 
 external methods:
-ledOn(no args) - sets pin for led object to High
-ledOff(no args) - sets pin for led object to Low
-ledBlink(time interval) - turns on then off led with a defined time interval
-blinkHanlder(pin) - interrupt handler to activate ledBlink
+relayOn(no args) - sets pin for relay object to High
+relayOff(no args) - sets pin for relay object to Low
 
 NOTE: Only pins in the outputsDict can be assigned for leds
 '''
-
-from machine import Pin
 
 class oneChnlRelay:
   def __init__(self,pin):
@@ -36,9 +30,9 @@ class oneChnlRelay:
       print('GPIO', pin,'not suitable for Input')
       print('Choose from:', outputsDict)
 
-
-  def relayOff (self):
-    self.relay.value(0)
-
+  #Relay is on when V is low
   def relayOn (self):
+    self.relay.value(0)
+  #Relay is off when V is high
+  def relayOff (self):
     self.relay.value(1)

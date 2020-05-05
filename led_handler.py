@@ -38,8 +38,14 @@ class ledClass:
     self.led.value(1)
 
   def ledOff(self):
-      self.led.value(0)
+    self.led.value(0)
   
+  def ledChange(self):
+    if self.led.value() == 0:
+      self.led.value(1)
+    else:
+      self.led.value(0)
+
   def ledBlink(self, interval):
     self.led.value(1)
     time.sleep(interval)

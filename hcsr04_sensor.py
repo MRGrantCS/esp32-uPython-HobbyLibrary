@@ -48,7 +48,7 @@ class HCSR04:
           else:
             raise OSError
         except OSError:      
-          print('GPIO', trig_pin,'not suitable for Input')
+          print('GPIO', trigger_pin,'not suitable for Input')
           print('Choose from:', outputsDict)
 
         try:
