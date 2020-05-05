@@ -3,7 +3,7 @@ from machine import Pin
 from gpioDicts import inputsDict
 
 '''
-Interface
+push button Interface
 
 init:
 pushSwitch(input pin number)
@@ -33,5 +33,9 @@ class pushButton:
     if self.button.value() == 0:
       pressed = True
     return pressed
-    
-    
+  
+  def buttonInterrupt (self):
+    self.interrupt = self.button.irq(trigger = Pin.IRQ_FALLING, handler = buttonHandler)
+  
+  def buttonHandler (self,pin):
+    print("Button press")

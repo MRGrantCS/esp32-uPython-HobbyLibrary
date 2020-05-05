@@ -1,9 +1,12 @@
 import machine, time
 from machine import Pin
 from gpioDicts import inputsDict, outputsDict
-
 '''
-Interface
+WARNING - the output of the HCSR04 is 5v, however most GPIOS accept 3.3v. Use a voltage divider (2:1 resistance) to redice the voltage
+Example wiring: https://stevieb9.github.io/rpi-hcsr04/hcsr04.png
+'''
+'''
+Ultrasonic distance metere Interface
 
 init:
 HCSR04(trigger pin number, echo pin number)
