@@ -3,10 +3,7 @@ Copy of Lib from:
 https://raw.githubusercontent.com/RuiSantosdotme/ESP-MicroPython/master/code/MQTT/umqttsimple.py
 '''
 
-try:
-    import usocket as socket
-except:
-    import socket
+import usocket as socket
 import ustruct as struct
 from ubinascii import hexlify
 
