@@ -3,13 +3,16 @@ from simple import MQTTClient
 from pir_sensor import pirClass
 from led_handler import ledClass
 from machine import Pin
-
 import network
+
+SSID = ""
+PASS = ""
 station = network.WLAN(network.STA_IF)
 station.active(True)
-station.connect("<SSID>", "<pass>")
+station.connect(SSID, PASS)
 
-SERVER = '192.168.1.6'  # MQTT Server Address (Change to the IP address of your Pi)
+sleep(10)
+SERVER = ''  # MQTT Server Address (Change to the IP address of your Pi)
 CLIENT_ID = 'ESP32_PIR_Sensor'
 TOPIC = b'pir/movement'
 
@@ -38,3 +41,5 @@ def pirInterruptFalling(pin):
 	msg = 'PIR Deactivated'
 	client.publish(TOPIC, msg)  # Publish sensor data to MQTT topic
 	print(msg)
+
+pirIRQ()
