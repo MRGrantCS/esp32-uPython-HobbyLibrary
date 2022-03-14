@@ -26,7 +26,7 @@ class ledClass:
     try:
       #check if pin is available for LED by checking dictionary of GPIOs
       if pin in outputsDict :
-        self.led = Pin(pin,Pin.OUT,Pin.PULL_DOWN)
+        self.led = Pin(pin,Pin.OUT,Pin.PULL_UP)
         self.ledOff()
       else:
         raise OSError
